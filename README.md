@@ -5,7 +5,7 @@ A fully functional **Job Portal web application** built using **React.js**, demo
 ---
 
 ##  Live Demo
-*(https://job-portal-c6a4-git-main-rishithas-projects-5c00fb19.vercel.app/)*
+*https://job-portal-c6a4-git-main-rishithas-projects-5c00fb19.vercel.app/*
 
 ---
 
@@ -106,26 +106,15 @@ The application is built completely on the frontend to showcase strong React fun
 
 ---
 
-## 📂 Project Structure
-
-
-src/
-├── components/
-├── context/
-├── pages/
-├── App.jsx
-├── main.jsx
-└── index.css
-
 
 
 ---
 
 
-## ▶️ Run Locally
+##  Run Locally
 
 ```bash
-git clone 
+git clone https://github.com/Rishi766-creator/JobPortal.git
 cd job-portal
 npm install
 npm run dev
