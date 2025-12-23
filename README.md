@@ -5,7 +5,7 @@ A fully functional **Job Portal web application** built using **React.js**, demo
 ---
 
 ##  Live Demo
-*(Add your Vercel deployment link here)*
+*(https://job-portal-c6a4-git-main-rishithas-projects-5c00fb19.vercel.app/)*
 
 ---
 
