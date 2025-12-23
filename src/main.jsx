@@ -11,18 +11,20 @@ import { ApplicationProvider } from './context/ApplicationContext.jsx';
 createRoot(document.getElementById('root')).render(
   
   <StrictMode>
+    <BrowserRouter>
     <AuthProvider>
     <SavedJobsProvider >
       <JobProvider>
         <ApplicationProvider>
-      <BrowserRouter>
+      
       
         <App />
-      </BrowserRouter>
+
       </ApplicationProvider>
       </JobProvider>
     </SavedJobsProvider>
     </AuthProvider>
+    </BrowserRouter>
   </StrictMode>
 
 )

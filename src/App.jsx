@@ -16,7 +16,7 @@ import { SavedJobsProvider } from './context/SavedJobsContext';
 function App(){
   const {user}=useAuth();
   return(
-    <SavedJobsProvider key={user.email}>
+    <SavedJobsProvider key={user?.email||"guest"}>
     
       <Routes>
       <Route path='/' element={<Home />}></Route>
