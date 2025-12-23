@@ -12,6 +12,7 @@ function JobCard({job}){
     const use=user?.role==="Candidate";
     const {applications}=useApplications();
     const hasApplied=(jobId)=>{
+        if(!user) return false;
         return Object.values(applications).some((recruiterApps)=>
         recruiterApps[String(jobId)]?.some((app)=>app.email===user.email))
     }
