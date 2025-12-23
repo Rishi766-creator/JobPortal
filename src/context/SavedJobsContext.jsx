@@ -15,7 +15,7 @@ export function SavedJobsProvider({children}){
     
 useEffect(() => {
   if (user) {
-    localStorage.setItem(`savedJobs_${user.email}`, JSON.stringify(savedJobs));
+    localStorage.setItem(`savedJobs_${user?.email}`, JSON.stringify(savedJobs));
   }
 }, [savedJobs, user]);
     useEffect(() => {
@@ -23,7 +23,7 @@ useEffect(() => {
     setSavedJobs([]);
     return;
   }
-  const storedJobs = localStorage.getItem(`savedJobs_${user.email}`);
+  const storedJobs = localStorage.getItem(`savedJobs_${user?.email}`);
   setSavedJobs(storedJobs ? JSON.parse(storedJobs) : []);
 }, [user]);
 

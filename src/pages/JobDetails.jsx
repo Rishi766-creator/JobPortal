@@ -22,10 +22,10 @@ function JobDetails(){
         const recruiterEmail=job.postedBy;
         const recruiterApps=applications[recruiterEmail]||{};
         const jobApps=recruiterApps[id]||[];
-        if(!jobApps.some((a)=>a.email===user.email)){
+        if(!jobApps.some((a)=>a?.email===user?.email)){
             jobApps.push({
-                name:user.email,
-                email:user.email,
+                name:user?.email,
+                email:user?.email,
                 appliedAt:Date.now()
             });
             recruiterApps[id]=jobApps;

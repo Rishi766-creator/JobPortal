@@ -8,11 +8,11 @@ import { Trash2,Pencil } from "lucide-react";
 function RecruiterDashboard(){
     const {user}=useAuth();
     const {applications}=useApplications();
-    const recruiterApps=applications[user.email]||{};
+    const recruiterApps=applications[user?.email]||{};
     
     const {jobs,deleteJob}=useJobs();
     console.log(jobs);
-    const myJobs=jobs.filter(j=>j.postedBy===user.email);
+    const myJobs=jobs.filter(j=>j.postedBy===user?.email);
 
     return(
         <div className="bg-gray-50 w-full h-screen">
@@ -42,7 +42,7 @@ function RecruiterDashboard(){
                                             <li key={index}
                                             className="border p-2 rounded text-sm"
                                             >
-                                                <p><b>Email:</b>{app.email}</p>
+                                                <p><b>Email:</b>{app?.email}</p>
                                                 <p className="text-gray-500">Applied on:{new Date(Number(app.appliedAt)).toLocaleString()}</p>
                                             </li>
                                         ))}

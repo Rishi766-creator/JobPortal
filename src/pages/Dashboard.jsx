@@ -11,7 +11,7 @@ function Dashboard(){
     const appliedJobs=[];
     Object.values(applications).forEach((recruiterApps)=>{
         Object.entries(recruiterApps).forEach(([jobId,apps])=>{
-            if(apps.some((a)=>a.email===user.email)){
+            if(apps.some((a)=>a?.email===user?.email)){
                 const job=jobs.find((j)=>String(j.id)===jobId);
                 if(job) appliedJobs.push(job);
             }
