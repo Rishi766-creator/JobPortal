@@ -9,12 +9,14 @@ function JobCard({job}){
     const {savedJobs,toggleJob}=useSavedJobs();
     const isSaved=savedJobs.some(j=>j.id===job.id);
     const {user}=useAuth();
+    if (!user) return null;
+
     const use=user?.role==="Candidate";
     const {applications}=useApplications();
     const hasApplied=(jobId)=>{
         if(!user) return false;
         return Object.values(applications).some((recruiterApps)=>
-        recruiterApps[String(jobId)]?.some((app)=>app.email===user.email))
+        recruiterApps[String(jobId)]?.some((app)=>app?.email===user.email))
     }
 
     return(
