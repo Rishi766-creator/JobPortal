@@ -31,7 +31,7 @@ function PostJob(){
     const nav=useNavigate();
     function handleSubmit(e){
         e.preventDefault();
-        addJob({...details,id:Date.now(),requirements:details.requirements.split('\n').filter(r=>r.trim()!==""),postedBy:user.email});
+        addJob({...details,id:Date.now(),requirements:details.requirements.split('\n').filter(r=>r.trim()!==""),postedBy:user?.email});
         nav('/jobs');
 
 

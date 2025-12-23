@@ -15,6 +15,7 @@ import { SavedJobsProvider } from './context/SavedJobsContext';
 
 function App(){
   const {user}=useAuth();
+  console.log("APP RENDER → user:", user);
   return(
     <SavedJobsProvider key={user?.email||"guest"}>
     

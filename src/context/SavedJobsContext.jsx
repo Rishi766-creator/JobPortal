@@ -4,7 +4,7 @@ const SavedJobsContext=createContext();
 export function SavedJobsProvider({children}){
     const {user}=useAuth();
     const [savedJobs,setSavedJobs]=useState(()=>{
-        const storedJobs=localStorage.getItem(`savedJobs_${user.email}`);
+        const storedJobs=localStorage.getItem(`savedJobs_${user?.email}`);
         return storedJobs?JSON.parse(storedJobs):[]    });
     const toggleJob=(job)=>{
         setSavedJobs(prev=>{
