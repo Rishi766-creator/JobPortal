@@ -26,7 +26,7 @@ function Jobs(){
     const [isOpen,setIsOpen]=useState(false);
     useEffect(()=>{
         setCurrentPage(1);
-    },debouncedSearch,filters]);
+    },[debouncedSearch,filters]);
         
     const filteredJobs=jobs.filter((job)=>{
         return(
@@ -42,7 +42,7 @@ function Jobs(){
 
 });
     const totalPages=Math.ceil(filteredJobs.length/jobsPerPage);
-    const startIndex=(CurrentPage-1)*jobsPerPage;
+    const startIndex=(currentPage-1)*jobsPerPage;
     const paginatedJobs=filteredJobs.slice(startIndex,startIndex+jobsPerPage);
     return(
         <div className="bg-gray-50">
