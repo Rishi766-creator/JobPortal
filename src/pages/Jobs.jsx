@@ -20,7 +20,7 @@ function Jobs(){
         },500);
         return ()=> clearTimeout(timer);
     },[search]);
-    const [currentPage,setCurrentPage]=ueState(1);
+    const [currentPage,setCurrentPage]=useState(1);
     const jobsPerPage=10;
     const {jobs}=useJobs();
     const [isOpen,setIsOpen]=useState(false);
