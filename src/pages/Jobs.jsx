@@ -1,5 +1,5 @@
 import FilterPanel from "../components/FilterPanel";
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import JobList from "../components/JobList";
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
@@ -13,8 +13,21 @@ function Jobs(){
         experience:""
     });
     const [search,setSearch]=useState("");
+    const [debouncedSearch,setDebouncedSearch]=useState("");
+    useEffect(()=>{
+        const timer=setTimeout(()=>{
+            setDebouncedSearch(search);
+        },500);
+        return ()=> clearTimeout(timer);
+    },[search]);
+    const [currentPage,setCurrentPage]=ueState(1);
+    const jobsPerPage=10;
     const {jobs}=useJobs();
     const [isOpen,setIsOpen]=useState(false);
+    useEffect(()=>{
+        setCurrentPage(1);
+    },debouncedSearch,filters]);
+        
     const filteredJobs=jobs.filter((job)=>{
         return(
             (!filters.type||filters.type.toLowerCase()===(job.type||"").toLowerCase()) &&
@@ -22,12 +35,15 @@ function Jobs(){
             (!filters.experience || filters.experience.toLowerCase()===(job.experience||"").toLowerCase()) &&
             
     (
-      job.title.toLowerCase().includes(search) ||
-      job.company.toLowerCase().includes(search)
+      job.title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+      job.company.toLowerCase().includes(debouncedSearch.toLowerCase())
     )
         );
 
-})
+});
+    const totalPages=Math.ceil(filteredJobs.length/jobsPerPage);
+    const startIndex=(CurrentPage-1)*jobsPerPage;
+    const paginatedJobs=filteredJobs.slice(startIndex,startIndex+jobsPerPage);
     return(
         <div className="bg-gray-50">
         <Navbar />
@@ -53,7 +69,48 @@ function Jobs(){
 />
 
         
-            <JobList jobs={filteredJobs} />
+            <JobList jobs={paginatedJobs} />
+            {totalPages > 1 && (
+    <div className="flex justify-center items-center gap-2 mt-6">
+
+        <button
+            onClick={() =>
+                setCurrentPage((prev) => Math.max(prev - 1, 1))
+            }
+            disabled={currentPage === 1}
+            className="px-4 py-2 border rounded disabled:opacity-50"
+        >
+            Previous
+        </button>
+
+        {Array.from({ length: totalPages }, (_, index) => (
+            <button
+                key={index + 1}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`px-4 py-2 border rounded ${
+                    currentPage === index + 1
+                        ? "bg-blue-600 text-white"
+                        : ""
+                }`}
+            >
+                {index + 1}
+            </button>
+        ))}
+
+        <button
+            onClick={() =>
+                setCurrentPage((prev) =>
+                    Math.min(prev + 1, totalPages)
+                )
+            }
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 border rounded disabled:opacity-50"
+        >
+            Next
+        </button>
+
+    </div>
+)}
         </div>
         </div>
         <Footer />
